@@ -8,7 +8,7 @@ int main()
   int c = a + b;
   printf("Hello World, the result is: %d \n", c);
 
-  printf("Alteração de qualquer coisa no código \n");
+  printf("Mudança de qualquer coisa no código \n");
 
   return EXIT_SUCCESS;
 }
