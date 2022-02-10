@@ -80,9 +80,12 @@ void fpu_irqhandler                   (void) __attribute__((weak, alias("default
 void spi4_irqhandler                  (void) __attribute__((weak, alias("default_handler")));
 
 /* Símbolos exportados pelo linker */
+
+extern uint32_t _etext;                /* Fim da seção .text. Inicio lma da seção .data*/
+
 extern uint32_t _sdata;                /* Início da seção .data */
 extern uint32_t _edata;                /* Fim da seção .data */
-extern uint32_t _la_data;              /* Endereço de carregamento (load address) da seção .data */
+
 extern uint32_t _sbss;                /* Início da seção .bss */
 extern uint32_t _ebss;                /* Fim da seção .bss */
 
@@ -199,24 +202,22 @@ void reset_handler(void)
 
   /*Copiar os dados da seção .data para a SRAM*/
 
-  uint32_t size  = (uint32_t)&_edata - (uint32_t)&_sdata;
-  uint8_t *p_src  = (uint8_t *)&_sdata;                /* ROM */
-  uint8_t *p_dest = (uint8_t *)&_la_data;              /* RAM */
-
+  uint32_t size   = (uint32_t)&_edata - (uint32_t)&_sdata;
+  uint8_t *p_src  = (uint8_t *)&_etext;              /* ROM */
+  uint8_t *p_dest = (uint8_t *)&_sdata;              /* RAM */
   for (i = 0; i < size; i++)
-  {
-    *p_dest++ = *p_src++;
-  }
+    {
+      *p_dest++ = *p_src++;
+    }
 
   /* Preencher com zero a seção .bss */
   
   size  = (uint32_t)&_ebss - (uint32_t)&_sbss;
   p_dest = (uint8_t *)&_sbss;              /* RAM */
-
-   for (i = 0; i < size; i++)
-  {
-    *p_dest++ = 0;
-  }
+  for (i = 0; i < size; i++)
+    {
+      *p_dest++ = 0;
+    }
 
   /* Chamar a função main() */
   main();
