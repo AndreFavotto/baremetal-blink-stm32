@@ -8,7 +8,7 @@ void main(void);
 
 /* Inicialização do STACK ******************************************************/
 #define SRAM_START                    0x20000000U
-#define SRAM_SIZE                     (64U * 1024U) /* 128K */
+#define SRAM_SIZE                     (64U * 1024U) /* 64K */
 #define SRAM_END                      ((SRAM_START) + (SRAM_SIZE))
 #define STACK_START                   SRAM_END
 
