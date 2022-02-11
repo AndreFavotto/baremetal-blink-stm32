@@ -1,6 +1,6 @@
 CC = arm-none-eabi-gcc
 LD = arm-none-eabi-gcc
-CFLAGS = -c -mcpu=cortex-m4 -mthumb -Wall -O0
+CFLAGS = -g -c -mcpu=cortex-m4 -mthumb -Wall -O0
 LFLAGS = -nostdlib -T stm32f401cc-rom.ld -Wl,-Map=blink.map
 
 all: main.o startup.o blink.elf

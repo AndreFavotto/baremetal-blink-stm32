@@ -4,13 +4,13 @@
 /* Configurations ******************************************************/
 #define LED_OFF                    0
 #define LED_ON                     1
-#define LED_DELAY                  5000
+#define LED_DELAY                  10000
 
 /* AHB1 Base Addresses ******************************************************/
 #define STM32_RCC_BASE             0x40023800 /* 0x40023800-0x40023bff: Reset and Clock control RCC*/
 
 /* AHB2 Base Addresses ******************************************************/
-#define STM32_GPIOC_BASE           0x48000800U /* 0x48000800-0x48000bff: GPIO Port C */
+#define STM32_GPIOC_BASE           0x40020800U /* 0x48000800-0x48000bff: GPIO Port C */
 
 /* Register Offsets *********************************************************/
 #define STM32_RCC_AHB1ENR_OFFSET   0x0030 /* AHB1 Peripheral Clock enable register */
